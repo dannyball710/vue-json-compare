@@ -83,6 +83,25 @@ const mergeData = (_old, _new) => {
     }
   };
 
+  const matchRegex = (valueA, valueB) => {
+    let _regex = null;
+    if (valueA[0] == "/" && valueA[valueA.length - 1] == "/") {
+      _regex = valueA;
+    } else if (valueB[0] == "/" && valueB[valueB.length - 1] == "/") {
+      _regex = valueB;
+    }
+    if (!_regex) {
+      return false;
+    }
+
+    let regex = new RegExp(_regex);
+    if (_regex == valueA) {
+      return regex.test(valueB);
+    } else {
+      return regex.test(valueA);
+    }
+  }
+
   // return parsed data
   const parseValue = (key, value, showIndex, needComma, lineType) => {
     return {
@@ -123,7 +142,7 @@ const mergeData = (_old, _new) => {
       if (_add.length === 0 && index === _stl.length - 1) {
         needComma = false;
       }
-      if (a[key] === b[key]) {
+      if (a[key] === b[key] || matchRegex(a[key], b[key])) {
         target.push(parseValue(key, b[key], showIndex, needComma, 'none'));
       } else if (isTheSametype(a[key], b[key])) {
         if (isComplexType(b[key])) {
