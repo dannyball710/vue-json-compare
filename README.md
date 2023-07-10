@@ -72,11 +72,3 @@ export default {
 ## Events
 
 not yet...
-
-## PS
-
-如果喜欢请给个星星，谢谢。
-If you like, please give me a star, thank you.
-
-如果需要帮助: QQ:1573815240 邮箱: 1573815240@qq.com
-if you need help: QQ:1573815240 email: 1573815240@qq.com
