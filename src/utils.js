@@ -85,16 +85,16 @@ const mergeData = (_old, _new) => {
 
   const matchRegex = (valueA, valueB) => {
     let _regex = null;
-    if (valueA[0] == "/" && valueA[valueA.length - 1] == "/") {
+    if (valueA.length >= 3 && valueA[0] == "/" && valueA[valueA.length - 1] == "/") {
       _regex = valueA;
-    } else if (valueB[0] == "/" && valueB[valueB.length - 1] == "/") {
+    } else if (valueB.length >= 3 && valueB[0] == "/" && valueB[valueB.length - 1] == "/") {
       _regex = valueB;
     }
     if (!_regex) {
       return false;
     }
 
-    let regex = new RegExp(_regex);
+    let regex = new RegExp(_regex.slice(1,-1));
     if (_regex == valueA) {
       return regex.test(valueB);
     } else {
